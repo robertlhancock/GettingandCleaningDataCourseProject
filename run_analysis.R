@@ -119,3 +119,6 @@ tidyDataset1<-select( combineTheData, matches("^activity$"), contains("subject")
 write.table(tidyDataset1, "tidyDataset1.csv", sep = ",", row.names=FALSE, col.names=TRUE)
 
 
+tidyDataset2<-aggregate(. ~subject + activity, tidyDataset1, mean)
+tidyDataset2<-tidyDataset2[order(tidyDataset2$subject,tidyDataset2$activity),]
+write.table(tidyDataset2, file = "tidyDataset2.csv",sep = ",", row.names=FALSE, col.names=TRUE)
