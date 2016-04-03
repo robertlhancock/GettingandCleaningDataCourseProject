@@ -1,0 +1,94 @@
+---
+title: "Codebook for Week 4 Project"
+author: "Robert Hancock"
+date: "4/3/2016"
+output:
+  html_document:
+    keep_md: yes
+---
+
+## Project Description
+Aggregate and select desired data from a study of 30 volunteers with smartphones strapped to their waist.
+
+##Study design and data processing
+This project involves data from a study of 30 volunteers whose ages range from 19 - 48 years old divided into 2 sets. Each Person had a Samsung Galaxy S II strapped to their waist. Linear acceleration and angular velocity measurements were taken using the device's embedded accelerometer and gyroscopes at intervals of 50Hz. 
+
+The data from the study is made tidy with meaningful variable names and the mean and standard deviation values from each measurement are included in the tidy data.
+
+###Collection of the raw data
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
+
+###Notes on the original (raw) data 
+Use of this dataset in publications must be acknowledged by referencing the following publication [1] 
+
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
+
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
+
+##Creating the tidy datafile
+Data from the Training and Testing phases of the project were combined into a single dataset. Activity and Subject variables were added and the desired means and standard deviations were extracted to form the first tidy data set.
+
+###Guide to create the tidy data file
+Process for creating the Tidy data set 1
+1. Download the zip data file from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+2. Extract the data. On this writers file system it was extracted to C:\\dev\\coursera\\GettingAndCleaningData\\Project
+3. run the R script createDataset1.R
+4. This process creates as output tidyDataset1.csv and tidyDataset2.csv
+
+###Cleaning of the data
+The script, createDataset1.R, combines the test and train data, associates the data with activity and subject indicators and finally reformats the variable names to give them greater meaning, conformability to standards and maneuverability with scripts. 
+See associated README.txt file for greater detail of the script.
+
+##Description of the variables in the tidyDataset1.csv file
+tidyDataset1.csv contains 2 dimensions. The columns contain indicator variables or statistical summary data for each of the 30 study participants and 6 different activity combinations. 
+There are 88 total variables and 10299 different activity/subject rows.
+
+Source: local data frame [10,299 x 88]
+
+   Activity Subject meanbodyaccxt meanbodyaccyt meanbodyacczt meangravityaccxt meangravityaccyt
+      (int)   (int)         (dbl)         (dbl)         (dbl)            (dbl)            (dbl)
+1         5       2     0.2571778   -0.02328523   -0.01465376        0.9364893       -0.2827192
+2         5       2     0.2860267   -0.01316336   -0.11908252        0.9274036       -0.2892151
+3         5       2     0.2754848   -0.02605042   -0.11815167        0.9299150       -0.2875128
+4         5       2     0.2702982   -0.03261387   -0.11752018        0.9288814       -0.2933958
+5         5       2     0.2748330   -0.02784779   -0.12952716        0.9265997       -0.3029609
+6         5       2     0.2792199   -0.01862040   -0.11390197        0.9256632       -0.3089397
+7         5       2     0.2797459   -0.01827103   -0.10399988        0.9261366       -0.3095639
+8         5       2     0.2746005   -0.02503513   -0.11683085        0.9265862       -0.3107735
+9         5       2     0.2725287   -0.02095401   -0.11447249        0.9255553       -0.3157374
+10        5       2     0.2757457   -0.01037199   -0.09977589        0.9241734       -0.3175966
+..      ...     ...           ...           ...           ...              ...              ...
+Variables not shown: meangravityacczt (dbl), meanbodyaccjerkxt (dbl), meanbodyaccjerkyt (dbl),
+  meanbodyaccjerkzt (dbl), meanbodygyroxt (dbl), meanbodygyroyt (dbl), meanbodygyrozt (dbl),
+  meanbodygyrojerkxt (dbl), meanbodygyrojerkyt (dbl), meanbodygyrojerkzt (dbl), meanbodyaccmagt
+  (dbl), meangravityaccmagt (dbl), meanbodyaccjerkmagt (dbl), meanbodygyromagt (dbl),
+  meanbodygyrojerkmagt (dbl), meanbodyaccxf (dbl), meanbodyaccyf (dbl), meanbodyacczf (dbl),
+  meanbodyaccfreqxf (dbl), meanbodyaccfreqyf (dbl), meanbodyaccfreqzf (dbl), meanbodyaccjerkxf
+  (dbl), meanbodyaccjerkyf (dbl), meanbodyaccjerkzf (dbl), meanbodyaccjerkfreqxf (dbl),
+  meanbodyaccjerkfreqyf (dbl), meanbodyaccjerkfreqzf (dbl), meanbodygyroxf (dbl), meanbodygyroyf
+  (dbl), meanbodygyrozf (dbl), meanbodygyrofreqxf (dbl), meanbodygyrofreqyf (dbl),
+  meanbodygyrofreqzf (dbl), meanbodyaccmagf (dbl), meanbodyaccmagfreqf (dbl),
+  meanbodybodyaccjerkmagf (dbl), meanbodybodyaccjerkmagfreqf (dbl), meanbodybodygyromagf (dbl),
+  meanbodybodygyromagfreqf (dbl), meanbodybodygyrojerkmagf (dbl), meanbodybodygyrojerkmagfreqf
+  (dbl), meanangletbodyaccgravity (dbl), meanangletbodyaccjerkgravitymean (dbl),
+  meanangletbodygyrogravitymean (dbl), meanangletbodygyrojerkgravitymean (dbl), meananglexgravity
+  (dbl), meanangleygravity (dbl), meananglezgravity (dbl), stdbodyaccxt (dbl), stdbodyaccyt (dbl),
+  stdbodyacczt (dbl), stdgravityaccxt (dbl), stdgravityaccyt (dbl), stdgravityacczt (dbl),
+  stdbodyaccjerkxt (dbl), stdbodyaccjerkyt (dbl), stdbodyaccjerkzt (dbl), stdbodygyroxt (dbl),
+  stdbodygyroyt (dbl), stdbodygyrozt (dbl), stdbodygyrojerkxt (dbl), stdbodygyrojerkyt (dbl),
+  stdbodygyrojerkzt (dbl), stdbodyaccmagt (dbl), stdgravityaccmagt (dbl), stdbodyaccjerkmagt
+  (dbl), stdbodygyromagt (dbl), stdbodygyrojerkmagt (dbl), stdbodyaccxf (dbl), stdbodyaccyf (dbl),
+  stdbodyacczf (dbl), stdbodyaccjerkxf (dbl), stdbodyaccjerkyf (dbl), stdbodyaccjerkzf (dbl),
+  stdbodygyroxf (dbl), stdbodygyroyf (dbl), stdbodygyrozf (dbl), stdbodyaccmagf (dbl),
+  stdbodybodyaccjerkmagf (dbl), stdbodybodygyromagf (dbl), stdbodybodygyrojerkmagf (dbl)
+
+
+
+
+##Sources
+Sources you used if any, otherise leave out.
+
+##Annex
+If you used any code in the codebook that had the echo=FALSE attribute post this here (make sure you set the results parameter to 'hide' as you do not want the results to show again)
