@@ -68,9 +68,12 @@ trainSubject<-"./data/UCI HAR Dataset/train/subject_train.TXT" %>% loadFileName 
 
 
 ## 2. add  the activity and subject(person id) columns  to add to the collection data 
-names<-c("Activity", "Subject")
+names<-c("activityid", "subject")
 activitySubject <- bind_cols(  trainY,  trainSubject)
 colnames(activitySubject)<-names
+activitySubject<-merge( activitySubject, trainActivityLabels, by.x="activityid", by.y="V1")
+colnames( activitySubject)<-c("activityid", "subject", "activity")
+
 
 ## 3. assign labels to the variables in the Training data
 labels<-getLabels(  trainFeatures)
@@ -90,9 +93,11 @@ testSubject<-"./data/UCI HAR Dataset/test/subject_test.TXT" %>% loadFileName %>%
 
 
 ## 6. add  the activity and subject(person id) columns  to add to the collection data 
-names<-c("Activity", "Subject")
+names<-c("activityid", "subject")
 activitySubject <- bind_cols(  testY,  testSubject)
 colnames(activitySubject)<-names
+activitySubject<-merge( activitySubject, testActivityLabels, by.x="activityid", by.y="V1")
+colnames( activitySubject)<-c("activityid", "subject", "activity")
 
 
 ## 7. ssign labels to the variables in the Test data
@@ -107,7 +112,8 @@ testX<-bind_cols(activitySubject,  testX)
 # 9. combine the test and train data
 combineTheData<-bind_rows(testX, trainX)
 # 10. select just the mean and standard deviation for each of the measurements
-tidyDataset1<-select( combineTheData, contains("Activity"), contains("Subject"),contains("mean"),contains("std"))
+tidyDataset1<-select( combineTheData, matches("^activity$"), contains("subject"),contains("mean"),contains("std"))
+
 
 
 write.table(tidyDataset1, "tidyDataset1.csv", sep = ",", row.names=FALSE, col.names=TRUE)
