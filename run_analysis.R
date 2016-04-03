@@ -121,4 +121,4 @@ write.table(tidyDataset1, "tidyDataset1.csv", sep = ",", row.names=FALSE, col.na
 
 tidyDataset2<-aggregate(. ~subject + activity, tidyDataset1, mean)
 tidyDataset2<-tidyDataset2[order(tidyDataset2$subject,tidyDataset2$activity),]
-write.table(tidyDataset2, file = "tidyDataset2.csv",sep = ",", row.names=FALSE, col.names=TRUE)
+write.table(tidyDataset2, file = "tidyDataset2.txt",sep = ",", row.names=FALSE, col.names=TRUE)
